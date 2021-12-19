@@ -265,7 +265,7 @@ int introMenu()
         cout << "4. View all Passwords" << endl;
         cout << "0. End program" << endl;
 
-        cin >> userChoice;
+
         while(!(cin >> userChoice))
             {
                 cout << "Error: input was not an integer value" << endl;
@@ -377,23 +377,23 @@ void findAPassword(int userId)
     char passWord[200];
     bool accountExists = false;
 
-    do
-    {
-        cout << "Please State The Application Name" << endl;
-        getline(cin >> ws, application);
+    cout << "Please State The Application Name" << endl;
+    getline(cin >> ws, application);
 
-        if (orderedAccounts[userId].count(application) > 0)
-        {
-            accountExists = true;
-        }
-        else
-        {
-            cout << "This Account Does Exist" << endl;
-            accountExists = false;
-        }
-    }while (accountExists == false);
-    cout << "Your UserName: " << orderedAccounts[userId][application][0] << endl;
-    cout << "Your Password: " << orderedAccounts[userId][application][1] << endl << endl;
+    if (orderedAccounts[userId].count(application) > 0)
+    {
+        accountExists = true;
+    }
+    else
+    {
+        cout << "This Account Does Exist" << endl;
+    }
+
+    if (accountExists == true)
+    {
+        cout << "Your UserName: " << orderedAccounts[userId][application][0] << endl;
+        cout << "Your Password: " << orderedAccounts[userId][application][1] << endl << endl;
+    }
 
     return;
 }
